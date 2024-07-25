@@ -10381,6 +10381,7 @@ sub Parse::RecDescent::Mail::IMAPClient::BodyStructure::Parse::othertypemessage
                           Parse::RecDescent::_tracefirst($text),
                           q{othertypemessage},
                           $tracelevel)
+
                             if defined $::RD_TRACE;
             $expectation->failed();
             last;
@@ -10539,34 +10540,6 @@ sub Parse::RecDescent::Mail::IMAPClient::BodyStructure::Parse::othertypemessage
         
 
 
-        Parse::RecDescent::_trace(q{Trying repeated subrule: [bodyextensions]},
-                  Parse::RecDescent::_tracefirst($text),
-                  q{othertypemessage},
-                  $tracelevel)
-                    if defined $::RD_TRACE;
-        $expectation->is(q{bodyextensions})->at($text);
-        
-        unless (defined ($_tok = $thisparser->_parserepeat($text, \&Parse::RecDescent::Mail::IMAPClient::BodyStructure::Parse::bodyextensions, 0, 100000000, $_noactions,$expectation,sub { \@arg },undef)))
-        {
-            Parse::RecDescent::_trace(q{<<Didn't match repeated subrule: [bodyextensions]>>},
-                          Parse::RecDescent::_tracefirst($text),
-                          q{othertypemessage},
-                          $tracelevel)
-                            if defined $::RD_TRACE;
-            last;
-        }
-        Parse::RecDescent::_trace(q{>>Matched repeated subrule: [bodyextensions]<< (}
-                    . @$_tok . q{ times)},
-
-                      Parse::RecDescent::_tracefirst($text),
-                      q{othertypemessage},
-                      $tracelevel)
-                        if defined $::RD_TRACE;
-        $item{q{bodyextensions(s?)}} = $_tok;
-        push @item, $_tok;
-        
-
-
         Parse::RecDescent::_trace(q{Trying action},
                       Parse::RecDescent::_tracefirst($text),
                       q{othertypemessage},
@@ -10594,7 +10567,7 @@ sub Parse::RecDescent::Mail::IMAPClient::BodyStructure::Parse::othertypemessage
         $item{__ACTION1__}=$_tok;
         
 
-        Parse::RecDescent::_trace(q{>>Matched production: [bodytype basicfields bodyMD5 bodydisp bodylang bodyextra bodyextensions]<<},
+        Parse::RecDescent::_trace(q{>>Matched production: [bodytype basicfields bodyMD5 bodydisp bodylang bodyextra]<<},
                       Parse::RecDescent::_tracefirst($text),
                       q{othertypemessage},
                       $tracelevel)
@@ -11119,17 +11092,17 @@ sub Parse::RecDescent::Mail::IMAPClient::BodyStructure::Parse::personalname
         my $repcount = 0;
 
 
-        Parse::RecDescent::_trace(q{Trying subrule: [NIL]},
+        Parse::RecDescent::_trace(q{Trying subrule: [nestedmessage]},
                   Parse::RecDescent::_tracefirst($text),
                   q{personalname},
                   $tracelevel)
                     if defined $::RD_TRACE;
         if (1) { no strict qw{refs};
         $expectation->is(q{})->at($text);
-        unless (defined ($_tok = Parse::RecDescent::Mail::IMAPClient::BodyStructure::Parse::NIL($thisparser,$text,$repeating,$_noactions,sub { \@arg },undef)))
+        unless (defined ($_tok = Parse::RecDescent::Mail::IMAPClient::BodyStructure::Parse::nestedmessage($thisparser,$text,$repeating,$_noactions,sub { \@arg },undef)))
         {
             
-            Parse::RecDescent::_trace(q{<<Didn't match subrule: [NIL]>>},
+            Parse::RecDescent::_trace(q{<<Didn't match subrule: [nestedmessage]>>},
                           Parse::RecDescent::_tracefirst($text),
                           q{personalname},
                           $tracelevel)
@@ -11137,19 +11110,19 @@ sub Parse::RecDescent::Mail::IMAPClient::BodyStructure::Parse::personalname
             $expectation->failed();
             last;
         }
-        Parse::RecDescent::_trace(q{>>Matched subrule: [NIL]<< (return value: [}
+        Parse::RecDescent::_trace(q{>>Matched subrule: [nestedmessage]<< (return value: [}
                     . $_tok . q{]},
 
                       Parse::RecDescent::_tracefirst($text),
                       q{personalname},
                       $tracelevel)
                         if defined $::RD_TRACE;
-        $item{q{NIL}} = $_tok;
+        $item{q{nestedmessage}} = $_tok;
         push @item, $_tok;
         
         }
 
-        Parse::RecDescent::_trace(q{>>Matched production: [NIL]<<},
+        Parse::RecDescent::_trace(q{Trying action},
                       Parse::RecDescent::_tracefirst($text),
                       q{personalname},
                       $tracelevel)
@@ -11172,7 +11145,7 @@ sub Parse::RecDescent::Mail::IMAPClient::BodyStructure::Parse::personalname
                       q{personalname},
                       $tracelevel)
                         if defined $::RD_TRACE;
-        my $thisprod = $thisrule->{"prods"}[1];
+        my $thisprod = $thisrule->{"prods"}[3];
         $text = $_[1];
         my $_savetext;
         @item = (q{personalname});
@@ -11693,6 +11666,38 @@ sub Parse::RecDescent::Mail::IMAPClient::BodyStructure::Parse::sender
                       q{sender},
                       $tracelevel)
                         if defined $::RD_TRACE;
+        $item{q{RFC822}} = $_tok;
+        push @item, $_tok;
+        
+        }
+
+        Parse::RecDescent::_trace(q{Trying action},
+                      Parse::RecDescent::_tracefirst($text),
+                      q{rfc822message},
+                      $tracelevel)
+                        if defined $::RD_TRACE;
+        
+
+        $_tok = ($_noactions) ? 0 : do { $return = "MESSAGE RFC822" };
+        unless (defined $_tok)
+        {
+            Parse::RecDescent::_trace(q{<<Didn't match action>> (return value: [undef])})
+                    if defined $::RD_TRACE;
+            last;
+        }
+        Parse::RecDescent::_trace(q{>>Matched action<< (return value: [}
+                      . $_tok . q{])},
+                      Parse::RecDescent::_tracefirst($text))
+                        if defined $::RD_TRACE;
+        push @item, $_tok;
+        $item{__ACTION1__}=$_tok;
+        
+
+        Parse::RecDescent::_trace(q{>>Matched production: [MESSAGE RFC822]<<},
+                      Parse::RecDescent::_tracefirst($text),
+                      q{rfc822message},
+                      $tracelevel)
+                        if defined $::RD_TRACE;
 
 
 
@@ -11776,7 +11781,7 @@ sub Parse::RecDescent::Mail::IMAPClient::BodyStructure::Parse::sourceroute
     my $text;
     my $lastsep;
     my $current_match;
-    my $expectation = new Parse::RecDescent::Expectation(q{NIL, or STRING});
+    my $expectation = new Parse::RecDescent::Expectation(q{ADDRESSES});
     $expectation->at($_[1]);
     
     my $thisline;
@@ -11787,7 +11792,7 @@ sub Parse::RecDescent::Mail::IMAPClient::BodyStructure::Parse::sourceroute
     while (!$_matched && !$commit)
     {
         
-        Parse::RecDescent::_trace(q{Trying production: [NIL]},
+        Parse::RecDescent::_trace(q{Trying production: [ADDRESSES]},
                       Parse::RecDescent::_tracefirst($_[1]),
                       q{sourceroute},
                       $tracelevel)
@@ -11861,17 +11866,17 @@ sub Parse::RecDescent::Mail::IMAPClient::BodyStructure::Parse::sourceroute
         my $repcount = 0;
 
 
-        Parse::RecDescent::_trace(q{Trying subrule: [STRING]},
+        Parse::RecDescent::_trace(q{Trying subrule: [ADDRESSES]},
                   Parse::RecDescent::_tracefirst($text),
                   q{sourceroute},
                   $tracelevel)
                     if defined $::RD_TRACE;
         if (1) { no strict qw{refs};
         $expectation->is(q{})->at($text);
-        unless (defined ($_tok = Parse::RecDescent::Mail::IMAPClient::BodyStructure::Parse::STRING($thisparser,$text,$repeating,$_noactions,sub { \@arg },undef)))
+        unless (defined ($_tok = Parse::RecDescent::Mail::IMAPClient::BodyStructure::Parse::ADDRESSES($thisparser,$text,$repeating,$_noactions,sub { \@arg },undef)))
         {
             
-            Parse::RecDescent::_trace(q{<<Didn't match subrule: [STRING]>>},
+            Parse::RecDescent::_trace(q{<<Didn't match subrule: [ADDRESSES]>>},
                           Parse::RecDescent::_tracefirst($text),
                           q{sourceroute},
                           $tracelevel)
@@ -11879,19 +11884,19 @@ sub Parse::RecDescent::Mail::IMAPClient::BodyStructure::Parse::sourceroute
             $expectation->failed();
             last;
         }
-        Parse::RecDescent::_trace(q{>>Matched subrule: [STRING]<< (return value: [}
+        Parse::RecDescent::_trace(q{>>Matched subrule: [ADDRESSES]<< (return value: [}
                     . $_tok . q{]},
 
                       Parse::RecDescent::_tracefirst($text),
                       q{sourceroute},
                       $tracelevel)
                         if defined $::RD_TRACE;
-        $item{q{STRING}} = $_tok;
+        $item{q{ADDRESSES}} = $_tok;
         push @item, $_tok;
         
         }
 
-        Parse::RecDescent::_trace(q{>>Matched production: [STRING]<<},
+        Parse::RecDescent::_trace(q{>>Matched production: [ADDRESSES]<<},
                       Parse::RecDescent::_tracefirst($text),
                       q{sourceroute},
                       $tracelevel)
@@ -12816,6 +12821,209 @@ sub Parse::RecDescent::Mail::IMAPClient::BodyStructure::Parse::textlines
 }
 
 # ARGS ARE: ($parser, $text; $repeating, $_noactions, \@args, $_itempos)
+sub Parse::RecDescent::Mail::IMAPClient::BodyStructure::Parse::textlines
+{
+	my $thisparser = $_[0];
+	use vars q{$tracelevel};
+	local $tracelevel = ($tracelevel||0)+1;
+	$ERRORS = 0;
+    my $thisrule = $thisparser->{"rules"}{"textlines"};
+
+    Parse::RecDescent::_trace(q{Trying rule: [textlines]},
+                  Parse::RecDescent::_tracefirst($_[1]),
+                  q{textlines},
+                  $tracelevel)
+                    if defined $::RD_TRACE;
+
+    my $def_at = @{$thisparser->{deferred}};
+    my $err_at = @{$thisparser->{errors}};
+
+    my $score;
+    my $score_return;
+    my $_tok;
+    my $return = undef;
+    my $_matched=0;
+    my $commit=0;
+    my @item = ();
+    my %item = ();
+    my $repeating =  $_[2];
+    my $_noactions = $_[3];
+    my @arg =    defined $_[4] ? @{ &{$_[4]} } : ();
+    my $_itempos = $_[5];
+    my %arg =    ($#arg & 01) ? @arg : (@arg, undef);
+    my $text;
+    my $lastsep;
+    my $current_match;
+    my $expectation = new Parse::RecDescent::Expectation(q{NIL, or NUMBER});
+    $expectation->at($_[1]);
+    
+    my $thisline;
+    tie $thisline, q{Parse::RecDescent::LineCounter}, \$text, $thisparser;
+
+    
+
+    while (!$_matched && !$commit)
+    {
+        
+        Parse::RecDescent::_trace(q{Trying production: [TEXT <commit> basicfields textlines bodyMD5 bodydisp bodylang bodyextra bodyextensions]},
+                      Parse::RecDescent::_tracefirst($_[1]),
+                      q{textlines},
+                      $tracelevel)
+                        if defined $::RD_TRACE;
+        my $thisprod = $thisrule->{"prods"}[0];
+        $text = $_[1];
+        my $_savetext;
+        @item = (q{textlines});
+        %item = (__RULE__ => q{textlines});
+        my $repcount = 0;
+
+
+        Parse::RecDescent::_trace(q{Trying subrule: [NIL]},
+                  Parse::RecDescent::_tracefirst($text),
+                  q{textlines},
+                  $tracelevel)
+                    if defined $::RD_TRACE;
+        if (1) { no strict qw{refs};
+        $expectation->is(q{})->at($text);
+        unless (defined ($_tok = Parse::RecDescent::Mail::IMAPClient::BodyStructure::Parse::NIL($thisparser,$text,$repeating,$_noactions,sub { \@arg },undef)))
+        {
+            
+            Parse::RecDescent::_trace(q{<<Didn't match subrule: [NIL]>>},
+                          Parse::RecDescent::_tracefirst($text),
+                          q{textlines},
+                          $tracelevel)
+                            if defined $::RD_TRACE;
+            $expectation->failed();
+            last;
+        }
+        Parse::RecDescent::_trace(q{>>Matched subrule: [NIL]<< (return value: [}
+                    . $_tok . q{]},
+
+                      Parse::RecDescent::_tracefirst($text),
+                      q{textlines},
+                      $tracelevel)
+                        if defined $::RD_TRACE;
+        $item{q{NIL}} = $_tok;
+        push @item, $_tok;
+        
+        }
+
+        Parse::RecDescent::_trace(q{>>Matched production: [NIL]<<},
+                      Parse::RecDescent::_tracefirst($text),
+                      q{textlines},
+                      $tracelevel)
+                        if defined $::RD_TRACE;
+
+
+
+        $_matched = 1;
+        last;
+    }
+
+     splice
+                @{$thisparser->{deferred}}, $def_at unless $_matched;
+                  
+    while (!$_matched && !$commit)
+    {
+        
+        Parse::RecDescent::_trace(q{Trying production: [NUMBER]},
+                      Parse::RecDescent::_tracefirst($_[1]),
+                      q{textlines},
+                      $tracelevel)
+                        if defined $::RD_TRACE;
+        my $thisprod = $thisrule->{"prods"}[1];
+        $text = $_[1];
+        my $_savetext;
+        @item = (q{textlines});
+        %item = (__RULE__ => q{textlines});
+        my $repcount = 0;
+
+
+        Parse::RecDescent::_trace(q{Trying subrule: [NUMBER]},
+                  Parse::RecDescent::_tracefirst($text),
+                  q{textlines},
+                  $tracelevel)
+                    if defined $::RD_TRACE;
+        if (1) { no strict qw{refs};
+        $expectation->is(q{})->at($text);
+        unless (defined ($_tok = Parse::RecDescent::Mail::IMAPClient::BodyStructure::Parse::NUMBER($thisparser,$text,$repeating,$_noactions,sub { \@arg },undef)))
+        {
+            
+            Parse::RecDescent::_trace(q{<<Didn't match subrule: [NUMBER]>>},
+                          Parse::RecDescent::_tracefirst($text),
+                          q{textlines},
+                          $tracelevel)
+                            if defined $::RD_TRACE;
+            $expectation->failed();
+            last;
+        }
+        Parse::RecDescent::_trace(q{>>Matched subrule: [NUMBER]<< (return value: [}
+                    . $_tok . q{]},
+
+                      Parse::RecDescent::_tracefirst($text),
+                      q{textlines},
+                      $tracelevel)
+                        if defined $::RD_TRACE;
+        $item{q{NUMBER}} = $_tok;
+        push @item, $_tok;
+        
+        }
+
+        Parse::RecDescent::_trace(q{>>Matched production: [NUMBER]<<},
+                      Parse::RecDescent::_tracefirst($text),
+                      q{textlines},
+                      $tracelevel)
+                        if defined $::RD_TRACE;
+
+
+
+        $_matched = 1;
+        last;
+    }
+
+     splice
+                @{$thisparser->{deferred}}, $def_at unless $_matched;
+                  
+    unless ( $_matched || defined($score) )
+    {
+             splice @{$thisparser->{deferred}}, $def_at;
+              
+
+        $_[1] = $text;  # NOT SURE THIS IS NEEDED
+        Parse::RecDescent::_trace(q{<<Didn't match rule>>},
+                     Parse::RecDescent::_tracefirst($_[1]),
+                     q{textlines},
+                     $tracelevel)
+                    if defined $::RD_TRACE;
+        return undef;
+    }
+    if (!defined($return) && defined($score))
+    {
+        Parse::RecDescent::_trace(q{>>Accepted scored production<<}, "",
+                      q{textlines},
+                      $tracelevel)
+                        if defined $::RD_TRACE;
+        $return = $score_return;
+    }
+    splice @{$thisparser->{errors}}, $err_at;
+    $return = $item[$#item] unless defined $return;
+    if (defined $::RD_TRACE)
+    {
+        Parse::RecDescent::_trace(q{>>Matched rule<< (return value: [} .
+                      $return . q{])}, "",
+                      q{textlines},
+                      $tracelevel);
+        Parse::RecDescent::_trace(q{(consumed: [} .
+                      Parse::RecDescent::_tracemax(substr($_[1],0,-length($text))) . q{])},
+                      Parse::RecDescent::_tracefirst($text),
+                      , q{textlines},
+                      $tracelevel)
+    }
+    $_[1] = $text;
+    return $return;
+}
+
+# ARGS ARE: ($parser, $text; $repeating, $_noactions, \@args, $_itempos)
 sub Parse::RecDescent::Mail::IMAPClient::BodyStructure::Parse::textmessage
 {
 	my $thisparser = $_[0];
@@ -13531,17 +13739,17 @@ sub Parse::RecDescent::Mail::IMAPClient::BodyStructure::Parse::value
         my $repcount = 0;
 
 
-        Parse::RecDescent::_trace(q{Trying subrule: [STRING]},
+        Parse::RecDescent::_trace(q{Trying subrule: [KVPAIRS]},
                   Parse::RecDescent::_tracefirst($text),
                   q{value},
                   $tracelevel)
                     if defined $::RD_TRACE;
         if (1) { no strict qw{refs};
         $expectation->is(q{})->at($text);
-        unless (defined ($_tok = Parse::RecDescent::Mail::IMAPClient::BodyStructure::Parse::STRING($thisparser,$text,$repeating,$_noactions,sub { \@arg },undef)))
+        unless (defined ($_tok = Parse::RecDescent::Mail::IMAPClient::BodyStructure::Parse::KVPAIRS($thisparser,$text,$repeating,$_noactions,sub { \@arg },undef)))
         {
             
-            Parse::RecDescent::_trace(q{<<Didn't match subrule: [STRING]>>},
+            Parse::RecDescent::_trace(q{<<Didn't match subrule: [KVPAIRS]>>},
                           Parse::RecDescent::_tracefirst($text),
                           q{value},
                           $tracelevel)
@@ -13549,19 +13757,19 @@ sub Parse::RecDescent::Mail::IMAPClient::BodyStructure::Parse::value
             $expectation->failed();
             last;
         }
-        Parse::RecDescent::_trace(q{>>Matched subrule: [STRING]<< (return value: [}
+        Parse::RecDescent::_trace(q{>>Matched subrule: [KVPAIRS]<< (return value: [}
                     . $_tok . q{]},
 
                       Parse::RecDescent::_tracefirst($text),
                       q{value},
                       $tracelevel)
                         if defined $::RD_TRACE;
-        $item{q{STRING}} = $_tok;
+        $item{q{KVPAIRS}} = $_tok;
         push @item, $_tok;
         
         }
 
-        Parse::RecDescent::_trace(q{>>Matched production: [STRING]<<},
+        Parse::RecDescent::_trace(q{>>Matched production: [KVPAIRS]<<},
                       Parse::RecDescent::_tracefirst($text),
                       q{value},
                       $tracelevel)
@@ -16500,8 +16708,7 @@ package Mail::IMAPClient::BodyStructure::Parse; sub new { my $self = bless( {
                                                                           'bodyMD5',
                                                                           'bodydisp',
                                                                           'bodylang',
-                                                                          'bodyextra',
-                                                                          'bodyextensions'
+                                                                          'bodyextra'
                                                                         ],
                                                              'changed' => 0,
                                                              'impcount' => 0,
@@ -16573,17 +16780,6 @@ package Mail::IMAPClient::BodyStructure::Parse; sub new { my $self = bless( {
                                                                                                          'min' => 0,
                                                                                                          'repspec' => '?',
                                                                                                          'subrule' => 'bodyextra'
-                                                                                                       }, 'Parse::RecDescent::Repetition' ),
-                                                                                                bless( {
-                                                                                                         'argcode' => undef,
-                                                                                                         'expected' => undef,
-                                                                                                         'line' => 134,
-                                                                                                         'lookahead' => 0,
-                                                                                                         'matchrule' => 0,
-                                                                                                         'max' => 100000000,
-                                                                                                         'min' => 0,
-                                                                                                         'repspec' => 's?',
-                                                                                                         'subrule' => 'bodyextensions'
                                                                                                        }, 'Parse::RecDescent::Repetition' ),
                                                                                                 bless( {
                                                                                                          'code' => '{ $return = { bodytype => $item{bodytype} };
